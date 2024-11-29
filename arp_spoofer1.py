@@ -16,8 +16,8 @@ def restore(destinition_ip,source_ip):
     source_mac=get_mac(source_ip)
     packet = scapy.ARP(op=2,pdst=destinition_ip, hwdst=destinition_mac, psrc=source_ip,hwsrc=source_mac)
     scapy.send(packet, count=4, verbose=False)
-target_ip = "172.20.2.21"
-getwey_ip = "172.20.1.1"
+target_ip = input("Jabrlanuvchi ip manzilini kiriting>>> ")
+getwey_ip = input("Router ip manzilini kiriting>>> ")
 try:
     send_packet_count = 0
     print("spoof boshlandi")
@@ -31,5 +31,8 @@ except KeyboardInterrupt:
     restore(target_ip,getwey_ip)
     restore(getwey_ip,target_ip)
     end_time=time.time()
-    work_time=(end_time-start_time)%60
-    print(f"Dastur tugadi...\nyuborilgan paketlar soni {send_packet_count}\nishlash vaqti {int(work_time)} soniya")
+    work_time=end_time-start_time
+    hour=work_time//3600
+    minut=(work_time%3600)//60
+    secund=work_time%60
+    print(f"Dastur tugadi...\nyuborilgan paketlar soni {send_packet_count}\nishlash vaqti {int(hour):02}:{int(minut):02}:{int(secund):02}")
